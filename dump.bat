@@ -1,16 +1,21 @@
 @echo off
+SETLOCAL ENABLEDELAYEDEXPANSION
 
-set list="C:\Program Files\1cv8" "C:\Program Files (x86)\1cv8"
+set list="C:\Program Files\1cv8" "C:\Program Files (x86)\1cv8" "C:\Program Files\1cv8t" "C:\Program Files (x86)\1cv8t"
 
 for %%a in (%list%) do (
 	for /d %%b in (%%a\8.3*) do (
 		set c1exe="%%b\bin\1cv8.exe"
-		IF EXIST %c1exe% (
+		IF EXIST !c1exe! (
 			goto main
 		)
+		set c1exe="%%b\bin\1cv8t.exe"
+		IF EXIST !c1exe! (
+			goto main
+		)	
 	)
 )
-echo 1cv8.exe bot found
+echo 1cv8.exe not found
 EXIT /B
 
 :main
